@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IndexController@index');
+Route::get('actu', 'ActuController@index');
+Route::get('login', 'LoginController@getPage');
+Route::post('login', 'LoginController@postPage');
+Route::get('contact', 'ContactController@getForm');
+Route::post('contact', 'ContactController@postForm');
