@@ -8,7 +8,7 @@
     <meta name="author" content="Kevin Cluzel">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
-    <title>Actualités</title>
+    <title>Diane Capelle</title>
 </head>
 <body>
 <div class="container">
@@ -33,6 +33,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href='{{ url('login')}}'>Administration</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='{{ url('email')}}'>Inscription</a>
                 </li>
             </ul>
         </div>
