@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'IndexController@index');
-Route::get('actu', 'ActuController@index');
 Route::get('login', 'LoginController@getPage');
 Route::post('login', 'LoginController@postPage');
 Route::get('contact', 'ContactController@getForm');
@@ -23,4 +22,5 @@ Route::resource('user', 'UserController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('user', 'UserController');
+Route::resource('post', 'PostController', ['except' => ['show', 'edit', 'update']]);

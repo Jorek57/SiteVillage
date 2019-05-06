@@ -8,7 +8,7 @@
                 <h3 class="panel-title">Il y a un problème !</h3>
             </div>
             <div class="panel-body">
-                <p>Une erreur a eu lieu. Veuillez rééssayer plus tard ou contacter un administrateur du site.</p>
+                <p>Une erreur de connexion a eu lieu. Veuillez rééssayer plus tard ou contacter un administrateur du site.</p>
             </div>
         </div>
     </div>

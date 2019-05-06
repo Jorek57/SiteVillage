@@ -2,7 +2,7 @@
 
 @section('content')
     <br>
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-sm-offset-4 col-sm-8">
         @if(session()->has('ok'))
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
         @endif
@@ -25,7 +25,7 @@
                     <tr>
                         <td>{!! $user->id !!}</td>
                         <td class="text-primary"><strong>{!! $user->name !!}</strong></td>
-                        <td>{!! link_to_route('user.show', 'Voir', [$user->id], ['class' => 'btn btn-success btn-block']) !!}</td>
+                        <td>{!! link_to_route('user.show', 'Voir', [$user->id], ['class' => 'btn btn-primary btn-block']) !!}</td>
                         <td>{!! link_to_route('user.edit', 'Modifier', [$user->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
                         <td>
                             {!! Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) !!}
@@ -37,7 +37,7 @@
                 </tbody>
             </table>
         </div>
-        {!! link_to_route('user.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-primary']) !!}
+        {!! link_to_route('user.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-success']) !!}
         {!! $links !!}
     </div>
 @endsection
