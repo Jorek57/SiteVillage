@@ -41,6 +41,13 @@ class PostController extends Controller
         return redirect(route('post.index'));
     }
 
+    public function edit($id)
+    {
+        $post = $this->PostRepository->getById($id);
+
+        return view('posts.edit',  compact('post'));
+    }
+
     public function destroy($id)
     {
         $this->postRepository->destroy($id);
