@@ -40,11 +40,12 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
-                @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                @else
+                @if(Auth::check())
+                    @if(Auth::user()->admin)
+                        <li class="nav-item">
+                            <a class="nav-link" href='{{ url('user')}}'>Administration</a>
+                        </li>
+                    @endif
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -62,16 +63,37 @@
                             </form>
                         </div>
                     </li>
-                @endguest
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+                @endif
             </ul>
         </div>
     </nav>
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-9">
             @yield('content')
         </div>
-        <div class="sidenav">
-            <p>Partenaires:</p>
+        <div class="d-none d-lg-block col-lg-3">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Partenaires</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a href="https://www.cc-sms.fr/" target="_blank">Communauté de Communes</a></td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.langatte-hebergement-loisir.fr/" target="_blank">Centre de Loisirs et bien être de Langatte</a></td>
+                </tr>
+                <tr>
+                    <td><a href="http://www.scmultifil.com/" target="_blank">Auto-Promo</a></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

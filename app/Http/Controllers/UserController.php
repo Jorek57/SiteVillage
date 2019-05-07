@@ -7,7 +7,6 @@ use App\Http\Requests\UserUpdateRequest;
 
 use App\Repositories\UserRepository;
 
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -18,6 +17,9 @@ class UserController extends Controller
 
     public function __construct(UserRepository $userRepository)
     {
+        $this->middleware('auth');
+        $this->middleware('admin');
+
         $this->userRepository = $userRepository;
     }
 

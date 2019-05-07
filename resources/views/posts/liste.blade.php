@@ -13,7 +13,7 @@
     {!! $links !!}
     @foreach($posts as $post)
         <article class="row">
-            <div class="col-md-12">
+            <div class="col-12">
                 <header>
                     <h1>{{ $post->titre }}</h1>
                 </header>
