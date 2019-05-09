@@ -4,31 +4,25 @@ namespace App\Repositories;
 
 use App\Post;
 
-class PostRepository
+class PostRepository extends ResourceRepository
 {
 
     protected $post;
 
     public function __construct(Post $post)
     {
-        $this->post = $post;
+        $this->model = $post;
     }
 
     public function getPaginate($n)
     {
-        return $this->post->with('user')
+        return $this->model->with('user')
             ->orderBy('posts.created_at', 'desc')
             ->paginate($n);
     }
 
-    public function store($inputs)
+    public function getById($id)
     {
-        $this->post->create($inputs);
+        return $this->model->find($id);
     }
-
-    public function destroy($id)
-    {
-        $this->post->findOrFail($id)->delete();
-    }
-
 }

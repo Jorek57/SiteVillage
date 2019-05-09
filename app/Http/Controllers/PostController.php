@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\PostRepository;
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostCreateRequest;
+use App\Http\Requests\PostUpdateRequest;
 
 class PostController extends Controller
 {
@@ -32,20 +33,27 @@ class PostController extends Controller
         return view('posts.add');
     }
 
-    public function store(PostRequest $request)
+    public function store(PostCreateRequest $request)
     {
         $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
 
         $this->postRepository->store($inputs);
 
-        return redirect(route('post.index'));
+        return redirect(route('post.index'))->withOk("L'Article a bien été créé.");
     }
 
     public function edit($id)
     {
-        $post = $this->PostRepository->getById($id);
+        $post = $this->postRepository->getById($id);
 
         return view('posts.edit',  compact('post'));
+    }
+
+    public function update(PostUpdateRequest $request, $id)
+    {
+        $this->postRepository->update($id, $request->all());
+
+        return redirect(route('post.index'))->withOk("L'Article a été modifié.");
     }
 
     public function destroy($id)
