@@ -9752,3 +9752,11 @@ h3 {
   background-size: 100% 100%;
   border-radius: 0 !important;
 }
+
+.dropdown-menu {
+  min-width: 5rem;
+}
+
+#map {
+  height: 300px;
+}

@@ -8,13 +8,15 @@
     <meta name="author" content="Kevin Cluzel">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+          crossorigin="" />
     <link rel="icon" type="image/png" href="img/logo.png">
     <title>Diane Capelle</title>
 </head>
 <body>
 <div class="container">
     <div class="jumbotron text-center">
-        <h1>Commune de Diane Capelle</h1>
+        <h1>{{ trans('interface.titre') }}</h1>
     </div>
     <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
         <a class="navbar-brand" href="#">
@@ -26,16 +28,16 @@
         <div class="collapse navbar-collapse" id="menu">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href='{{ url('/')}}'>Accueil</a>
+                    <a class="nav-link" href='{{ url('/')}}'>{{ trans('interface.accueil') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href='{{ url('post')}}'>Actualités</a>
+                    <a class="nav-link" href='{{ url('post')}}'>{{ trans('interface.actualites') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href='{{ url('contact')}}'>Contact</a>
+                    <a class="nav-link" href='{{ url('contact')}}'>{{ trans('interface.contact') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href='{{ url('email')}}'>Inscription</a>
+                    <a class="nav-link" href='{{ url('email')}}'>{{ trans('interface.inscription') }}</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -68,6 +70,21 @@
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
                 @endif
+                <!--Localisation-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarDropdownFlag" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img width="32" height="32" alt="{{ session('locale') }}"  src="{!! asset('img/flags/' . session('locale') . '-flag.png') !!}" />
+                    </a>
+                    <div id="flags" class="dropdown-menu" aria-labelledby="navbarDropdownFlag">
+                        @foreach(config('app.locales') as $locale)
+                            @if($locale != session('locale'))
+                                <a class="dropdown-item" href="{{ route('language', $locale) }}">
+                                    <img width="32" height="32" alt="{{ session('locale') }}"  src="{!! asset('img/flags/' . $locale . '-flag.png') !!}" />
+                                </a>
+                            @endif
+                        @endforeach
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
@@ -79,24 +96,29 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Partenaires</th>
+                    <th>{{ trans('interface.partenaires') }}</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td><a href="https://www.cc-sms.fr/" target="_blank">Communauté de Communes</a></td>
+                    <td><a href="https://www.cc-sms.fr/" target="_blank">{{ trans('interface.cc') }}</a></td>
                 </tr>
                 <tr>
-                    <td><a href="https://www.langatte-hebergement-loisir.fr/" target="_blank">Centre de Loisirs et bien être de Langatte</a></td>
+                    <td><a href="https://www.langatte-hebergement-loisir.fr/" target="_blank">{{ trans('interface.langatte') }}</a></td>
                 </tr>
                 <tr>
                     <td><a href="http://www.scmultifil.com/" target="_blank">Auto-Promo</a></td>
                 </tr>
                 </tbody>
             </table>
+            <div id="map">
+                <!-- Ici s'affichera la carte -->
+            </div>
         </div>
     </div>
 </div>
 </body>
 <script src="{{ mix('/js/app.js') }}"></script>
+<script src="js/leaflet.js"></script>
+<script src="js/map.js"></script>
 </html>

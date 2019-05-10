@@ -18,6 +18,7 @@ Route::get('contact', 'ContactController@getForm');
 Route::post('contact', 'ContactController@postForm');
 Route::get('email', 'EmailController@getForm');
 Route::post('email', ['uses' => 'EmailController@postForm', 'as' => 'storeEmail']);
+Route::name('language')->get('language/{lang}', 'IndexController@language');
 
 Auth::routes();
 

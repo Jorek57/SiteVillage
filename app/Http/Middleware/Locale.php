@@ -15,15 +15,34 @@ class Locale
      */
     protected $languages = ['en','fr', 'de'];
 
-        public function handle($request, Closure $next)
-    {
+
+    /**
+     * @param $request
+     * @param Closure $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+        {
         if(!session()->has('locale'))
         {
-            session()->put('locale', $request->getPreferredLanguage($this->languages));
+            session(['locale' => $request->getPreferredLanguage(config('app.locales'))]);
         }
+
+            //Conversion en prod
+            /*$locale = session('locale');
+
+            $conversion = [
+                'fr' => 'fr_FR',
+                'en' => 'en_US',
+            ];
+
+            $locale = $conversion[$locale];*/
+            //FIN PROD
 
         app()->setLocale(session('locale'));
 
+        setlocale(LC_TIME, session('locale'));
+
         return $next($request);
-    }
+        }
 }
