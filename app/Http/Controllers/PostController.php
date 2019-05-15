@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\PostRepository;
 use App\Http\Requests\PostCreateRequest;
 use App\Http\Requests\PostUpdateRequest;
+use Image;
 
 class PostController extends Controller
 {
@@ -37,9 +38,18 @@ class PostController extends Controller
     {
         $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
 
+        if ($request->hasFile('image')){
+            $img = $request->file('image');
+            $filename = time() . '.' . $img->getClientOriginalExtension();
+            $location = public_path('uploads/' . $filename);
+            Image::make($img)->resize(600,400)->save($location);
+
+            $inputs['image'] = $filename;
+        }
+
         $this->postRepository->store($inputs);
 
-        return redirect(route('post.index'))->withOk("L'Article a bien été créé.");
+        return redirect(route('post.index'))->withOk("L'Article a bien été créé. ");
     }
 
     public function edit($id)

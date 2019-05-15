@@ -19,6 +19,10 @@
                 </header>
                 <hr>
                 <section>
+                    @if ($post->image && File::exists(public_path("uploads/" . $post->image)))
+                    <img src="{{ asset('uploads/' . $post->image) }}">
+                    @endif
+                    <br>
                     <p>{{ $post->contenu }}</p>
                     @if(Auth::check() and Auth::user()->admin)
                     <table class="table">
