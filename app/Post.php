@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['titre','contenu','user_id', 'image'];
+    protected $fillable = ['titre','contenu','user_id','image'];
 
     public function user()
     {

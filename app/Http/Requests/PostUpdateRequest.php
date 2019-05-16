@@ -25,7 +25,8 @@ class PostUpdateRequest extends FormRequest
     {
         return [
             'titre' => 'required|max:80',
-            'contenu' => 'required'
+            'contenu' => 'required',
+            'image' => 'sometimes|image'
         ];
     }
 }

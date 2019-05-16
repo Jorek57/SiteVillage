@@ -6,6 +6,7 @@ use App\Repositories\PostRepository;
 use App\Http\Requests\PostCreateRequest;
 use App\Http\Requests\PostUpdateRequest;
 use Image;
+use Storage;
 
 class PostController extends Controller
 {
@@ -61,14 +62,35 @@ class PostController extends Controller
 
     public function update(PostUpdateRequest $request, $id)
     {
-        $this->postRepository->update($id, $request->all());
+        $oldFilename = $this->postRepository->getById($id)->image;
+
+        $inputs = array_merge($request->all());
+
+        if ($request->hasFile('image')){
+            $img = $request->file('image');
+            $filename = time() . '.' . $img->getClientOriginalExtension();
+            $location = public_path('uploads/' . $filename);
+
+
+            Image::make($img)->resize(600,400)->save($location);
+
+            $inputs['image'] = $filename;
+
+            Storage::delete($oldFilename);
+        }
+
+        $this->postRepository->update($id, $inputs);
 
         return redirect(route('post.index'))->withOk("L'Article a été modifié.");
     }
 
     public function destroy($id)
     {
+        $img = $this->postRepository->getById($id)->image;
+
         $this->postRepository->destroy($id);
+
+        Storage::delete($img);
 
         return redirect()->back();
     }

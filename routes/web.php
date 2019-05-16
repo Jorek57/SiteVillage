@@ -23,4 +23,5 @@ Route::name('language')->get('language/{lang}', 'IndexController@language');
 Auth::routes();
 
 Route::resource('user', 'UserController');
+
 Route::resource('post', 'PostController');
