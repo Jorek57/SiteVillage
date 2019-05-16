@@ -16,7 +16,7 @@ class PostController extends Controller
 
     public function __construct(PostRepository $postRepository)
     {
-        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('admin', ['only' => 'destroy']);
 
         $this->postRepository = $postRepository;
@@ -28,6 +28,13 @@ class PostController extends Controller
         $links = $posts->render();
 
         return view('posts.liste', compact('posts', 'links'));
+    }
+
+    public function show($id)
+    {
+        $post = $this->postRepository->getById($id);
+
+        return view('posts.show', compact('post'));
     }
 
     public function create()
@@ -75,7 +82,6 @@ class PostController extends Controller
             Image::make($img)->resize(600,400)->save($location);
 
             $inputs['image'] = $filename;
-
             Storage::delete($oldFilename);
         }
 
@@ -88,9 +94,9 @@ class PostController extends Controller
     {
         $img = $this->postRepository->getById($id)->image;
 
-        $this->postRepository->destroy($id);
-
         Storage::delete($img);
+
+        $this->postRepository->destroy($id);
 
         return redirect()->back();
     }

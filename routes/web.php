@@ -12,8 +12,7 @@
 */
 
 Route::get('/', 'IndexController@index');
-Route::get('login', 'LoginController@getPage');
-Route::post('login', 'LoginController@postPage');
+
 Route::get('contact', 'ContactController@getForm');
 Route::post('contact', 'ContactController@postForm');
 Route::get('email', 'EmailController@getForm');
@@ -23,5 +22,4 @@ Route::name('language')->get('language/{lang}', 'IndexController@language');
 Auth::routes();
 
 Route::resource('user', 'UserController');
-
 Route::resource('post', 'PostController');

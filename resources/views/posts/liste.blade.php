@@ -23,7 +23,12 @@
                     <img src="{{ asset('uploads/' . $post->image) }}">
                     @endif
                     <br>
-                    <p>{{ $post->contenu }}</p>
+                    <p>{{str_limit( $post->contenu, 280, '...') }}</p>
+                        <tbody>
+                        <tr>
+                            <td>{!! link_to_route('post.show', 'Lire la suite', [$post->id], ['class' => 'btn btn-primary btn-block']) !!}</td>
+                        </tr>
+                        </tbody>
                     @if(Auth::check() and Auth::user()->admin)
                     <table class="table">
                         <tbody>
