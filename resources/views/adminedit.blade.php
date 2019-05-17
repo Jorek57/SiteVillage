@@ -1,11 +1,10 @@
 @extends('template')
 
 @section('content')
-    <div class="col-sm-offset-4 col-sm-4">
-        <br>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Modification d'un utilisateur</div>
-            <div class="panel-body">
+    <div class="row-justify-content-center">
+        <div class="card">
+            <div class="card-header">Modification d'un utilisateur</div>
+            <div class="card-body">
                 <div class="col-sm-12">
                     {!! Form::model($user, ['route' => ['user.update', $user->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
                     <div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
@@ -28,6 +27,7 @@
                 </div>
             </div>
         </div>
+        <br>
         <a href="javascript:history.back()" class="btn btn-primary">
             <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
         </a>

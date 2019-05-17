@@ -1,7 +1,6 @@
 @extends('template')
 
 @section('content')
-    <br>
     <div class="col-sm-offset-3 col-sm-12">
         <div class="card">
             <div class="card-header">Ajout d'un article</div>

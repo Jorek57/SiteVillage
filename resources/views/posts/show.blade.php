@@ -9,10 +9,10 @@
             <hr>
             <section>
                 @if ($post->image && File::exists(public_path("uploads/" . $post->image)))
-                    <img src="{{ asset('uploads/' . $post->image) }}">
+                <img class="img-fluid" src="{{ asset('uploads/' . $post->image) }}">
                 @endif
                 <br>
-                <p>{{ $post->contenu }}</p>
+                <p>{!! $post->contenu !!}</p>
                 @if(Auth::check() and Auth::user()->admin)
                     <table class="table">
                         <tbody>
@@ -31,6 +31,11 @@
                     <span class="glyphicon glyphicon-pencil"></span> {{ $post->user->name }} le {!! $post->created_at->format('d-m-Y') !!}
                 </div>
             </section>
+        </div>
+        <div class="col-12">
+            <a href="javascript:history.back()" class="btn btn-primary">
+                <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+            </a>
         </div>
     </article>
 @endsection

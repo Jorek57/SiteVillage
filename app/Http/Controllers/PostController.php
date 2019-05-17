@@ -7,6 +7,7 @@ use App\Http\Requests\PostCreateRequest;
 use App\Http\Requests\PostUpdateRequest;
 use Image;
 use Storage;
+use Purifier;
 
 class PostController extends Controller
 {
@@ -44,7 +45,7 @@ class PostController extends Controller
 
     public function store(PostCreateRequest $request)
     {
-        $inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
+        $inputs = array_merge($request->all(), ['user_id' => $request->user()->id, 'contenu' => Purifier::clean($request['contenu'])]);
 
         if ($request->hasFile('image')){
             $img = $request->file('image');
@@ -71,7 +72,7 @@ class PostController extends Controller
     {
         $oldFilename = $this->postRepository->getById($id)->image;
 
-        $inputs = array_merge($request->all());
+        $inputs = array_merge($request->all(), ['contenu' => Purifier::clean($request['contenu'])]);
 
         if ($request->hasFile('image')){
             $img = $request->file('image');

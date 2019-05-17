@@ -1,11 +1,10 @@
 @extends('template')
 
 @section('content')
-    <br>
-    <div class="col-sm-offset-3 col-sm-6">
-        <div class="panel panel-info">
-            <div class="panel-heading">Modification d'un article</div>
-            <div class="panel-body">
+    <div class="col-sm-offset-3 col-sm-12">
+        <div class="card">
+            <div class="card-header">Modification d'un article</div>
+            <div class="card-body">
                 {!! Form::model($post, ['route' => ['post.update', $post->id], 'method' => 'put', 'class' => 'form-horizontal panel', 'files' => true]) !!}
                 <div class="form-group {!! $errors->has('titre') ? 'has-error' : '' !!}">
                     {!! Form::text('titre', null, ['class' => 'form-control', 'placeholder' => 'Titre']) !!}
@@ -23,6 +22,7 @@
                 {!! Form::close() !!}
             </div>
         </div>
+        <br>
         <a href="javascript:history.back()" class="btn btn-primary">
             <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
         </a>
