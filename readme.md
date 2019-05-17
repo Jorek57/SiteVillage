@@ -1,11 +1,11 @@
-#Site de Diane Capelle:
+# Site de Diane Capelle:
 
-##Présentation du projet
+## Présentation du projet
 
 Ce site présente la vie et les actualités du village.
 Il utilise notamment Bootstrap et Laravel.
 
-##Installation depuis git:
+## Installation depuis git:
 
 - Créer une base de données pour le projet
 - Pull le projet
@@ -19,7 +19,7 @@ php artisan db:seed
 php artisan serve
 ```
 
-###Notes:
+### Notes:
 
 J'utilise Laragon plutot que Wamp car il y a parfois des problèmes d'incompatibilité avec Laravel sous Wamp.
 Si malgré tout il y a des problèmes pour lancer le projet, contactes moi!
