@@ -79,7 +79,6 @@ class PostController extends Controller
             $filename = time() . '.' . $img->getClientOriginalExtension();
             $location = public_path('uploads/' . $filename);
 
-
             Image::make($img)->save($location);
 
             $inputs['image'] = $filename;

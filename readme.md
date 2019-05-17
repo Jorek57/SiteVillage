@@ -9,7 +9,7 @@ Il utilise notamment Bootstrap et Laravel.
 
 - Créer une base de données pour le projet
 - Pull le projet
-- Renommer le fichier .env.example en .env et remplir les infos pour la base de données
+- Renommer le fichier .env.example en .env et remplir les infos pour la base de données et le mailer
 - Lancer les commandes suivantes:
 ```
 composer install
@@ -25,3 +25,4 @@ J'utilise Laragon plutot que Wamp car il y a parfois des problèmes d'incompatib
 Si malgré tout il y a des problèmes pour lancer le projet, contactes moi!.
 
 Les identifiants générés par le seed suivent la structure 'emailX@blop.fr' et 'passwordX' où X est un nombre de 1 à 5.
+
