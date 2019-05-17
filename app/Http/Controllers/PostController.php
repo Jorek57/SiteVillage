@@ -51,7 +51,7 @@ class PostController extends Controller
             $img = $request->file('image');
             $filename = time() . '.' . $img->getClientOriginalExtension();
             $location = public_path('uploads/' . $filename);
-            Image::make($img)->resize(600,400)->save($location);
+            Image::make($img)->save($location);
 
             $inputs['image'] = $filename;
         }
@@ -80,7 +80,7 @@ class PostController extends Controller
             $location = public_path('uploads/' . $filename);
 
 
-            Image::make($img)->resize(600,400)->save($location);
+            Image::make($img)->save($location);
 
             $inputs['image'] = $filename;
             Storage::delete($oldFilename);
